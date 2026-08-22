@@ -1,0 +1,46 @@
+class Solution {
+    public String frequencySort(String s) {
+
+        // Count frequency of each ASCII character
+        int[] freq = new int[128];
+
+        for (char c : s.toCharArray()) {
+            freq[c]++;
+        }
+
+        // Buckets based on frequency
+        StringBuilder[] buckets = new StringBuilder[s.length() + 1];
+
+        for (int i = 0; i < 128; i++) {
+            if (freq[i] > 0) {
+                int count = freq[i];
+
+                if (buckets[count] == null) {
+                    buckets[count] = new StringBuilder();
+                }
+
+                buckets[count].append((char) i);
+            }
+        }
+
+        // Build result from highest frequency to lowest
+        StringBuilder result = new StringBuilder();
+
+        for (int frequency = s.length(); frequency >= 1; frequency--) {
+
+            if (buckets[frequency] != null) {
+
+                for (int i = 0; i < buckets[frequency].length(); i++) {
+                    char c = buckets[frequency].charAt(i);
+
+                    // Add the character 'frequency' times
+                    for (int j = 0; j < frequency; j++) {
+                        result.append(c);
+                    }
+                }
+            }
+        }
+
+        return result.toString();
+    }
+}
