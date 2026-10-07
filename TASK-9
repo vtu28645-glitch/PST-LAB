@@ -1,0 +1,21 @@
+import java.util.Scanner;
+
+public class Testing {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String input = scanner.nextLine().trim();
+
+        if ("10+20".equals(input)) {
+            System.out.println("TEST PASSED");
+        } else {
+            System.out.println("TEST FAILED");
+        }
+
+        scanner.close();
+    }
+}
+
+INPUT
+10+20
+OUTPUT
+TEST PASSED
